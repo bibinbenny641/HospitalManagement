@@ -4,6 +4,7 @@ from django.contrib.auth import logout
 from.models import User,Department,Employees
 from datetime import datetime
 from django.utils import timezone
+from django.contrib.auth.hashers import check_password
 
 
 # Create your views here.
@@ -27,6 +28,7 @@ def admin_login(request):
 
 def admin_home(request):
     if request.user.is_authenticated and request.user.is_staff:
+        
         if request.method=='POST':
             name = request.POST['DptName']
             description = request.POST['description']
@@ -74,10 +76,33 @@ def deleteHeaduser(request,id):
     print(emp)
     return redirect(addHeadUser)
 
-def editHeaduser(request,id):
-    pass
+def changepassword(request):
+    if request.user.is_authenticated and request.user.is_active:
 
+        if request.method=='POST':
+            old    = request.POST['oldpass']
+            newpassword1 = request.POST['newpass1']
+            newpassword2 = request.POST['newpass2']
+            if newpassword1.isspace():
+                return redirect(changepassword)
+            
+            o = check_password(old,request.user.password)
+            if o:
+                if newpassword1 == newpassword2:
+                    user = User.objects.get(id=request.user.id)
+                    user.set_password(newpassword1)
+                    user.save()
 
+                    return redirect(admin_login)
+                else:
+                    return redirect(changepassword)
+            else:
+                return redirect(changepassword)
+
+    else:
+        return redirect("/")
+           
+    return render(request,'password.html')
 
 
 

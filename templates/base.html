@@ -11,6 +11,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </head>
 <body>
+  {% if request.user.is_authenticated %}
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
         <div class="container-fluid">
           <a class="navbar-brand" href="">HOSPITAL</a>
@@ -20,7 +21,7 @@
           <div class="collapse navbar-collapse" id="navbarText">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href=""">Department</a>
+                <a class="nav-link active" aria-current="page" href="{% url 'adminhome' %}">Department</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="{% url 'addHeadUser' %}">Head Employees</a>
@@ -33,6 +34,8 @@
               </li>
               
             </ul>
+            
+            <a href="{% url 'changepassword' %}"><button type="button" class="btn btn-danger btn-md">Change Password</button></a>
             <span class="navbar-text">
                 <a href="{% url 'logoutadmin' %}">
 
@@ -42,6 +45,9 @@
           </div>
         </div>
       </nav>
+      {% endif %}
+      
+
     {% block content %}
 
 

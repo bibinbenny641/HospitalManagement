@@ -3,12 +3,13 @@
 
 {% block content %}
 
-    <div style=" padding-top: 30px; margin-right: 100px;">
-
-        <button type="button" class="btn btn-danger">Add Head Employees</button>
-    </div>
+    
     <div style="padding-top: 30px;">
-
+        <center>
+            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                Add Department
+            </button>
+        </center>
 
 
         <table class="table table-warning">
@@ -21,7 +22,6 @@
                     <th scope="col">Description</th>
                     <th scope="col">Edit</th>
                     <th scope="col">Delete</th>
-                    <!-- <th scope="col">add head for department</th> -->
                 </tr>
             </thead>
             <tbody>
@@ -40,11 +40,7 @@
                     <td>{{i.description}}</td>
                     <td><button type="button" class="btn btn-success">Edit</button></td>
                     <td><button type="button" class="btn btn-danger">Delete</button></td>
-                    <!-- <td>
-                        <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal{{i.id}}">
-                            Add Department Head
-                        </button>
-                    </td> -->
+                    
                 </tr>
                 {% endfor %}
 
@@ -54,12 +50,7 @@
 
     <div style="padding-top: 30px;">
 
-        <center>
-
-            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                Add Department
-            </button>
-        </center>
+        
     </div>
 
 

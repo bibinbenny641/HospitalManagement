@@ -85,6 +85,7 @@ class Employees(models.Model):
     age = models.IntegerField()
     profile = models.ImageField(upload_to='profile')
     department = models.ForeignKey(Department,on_delete=models.CASCADE)
+    description = models.CharField(max_length=255,default='headuser')
     is_head = models.BooleanField(default=False)
 
 

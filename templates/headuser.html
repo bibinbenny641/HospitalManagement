@@ -65,9 +65,8 @@
     <div style="padding-top: 30px;">
 
         <center>
-
             <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                Add Department
+                Add HeadUser
             </button>
         </center>
     </div>
@@ -82,7 +81,8 @@
                     <th scope="col">id</th>
                     <th scope="col">Name</th>
                     <th scope="col">Image</th>
-                    <th scope="col">Department name</th>
+                    <th scope="col">Age</th>
+                    <th scope="col">Dpt Name</th>
                     <th scope="col">Description</th>
                     <th scope="col">Edit</th>
                     <th scope="col">Delete</th>
@@ -102,8 +102,9 @@
 
                     </td>
                     <td>{{i.age}}</td>
+                    <td>{{i.department.DptName}}</td>
                     <td>{{i.description}}</td>
-                    <td><a href="{% url 'editHeaduser' i.id %}"><button type="button" class="btn btn-success">Edit</button></a></td>
+                    <td><a href=""><button type="button" class="btn btn-success">Edit</button></a></td>
                     <td><a href="{% url 'deleteHeaduser' i.id %}"><button type="button" class="btn btn-danger">Delete</button></td></a>
                     <!-- <td>
                         <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal{{i.id}}">
