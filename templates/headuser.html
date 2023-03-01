@@ -1,0 +1,179 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<!--#######################  add head user modal  ##############################  -->
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form enctype="multipart/form-data" method="POST" name="admin_login">
+                    {% csrf_token %}
+
+                    <div class="form-outline mb-1">
+                        <input name="name" type="text" class="form-control form-control-lg" />
+                        <label class="form-label" for="typeEmailX-2">Name</label>
+                    </div>
+                    <div class="input-group form-outline mb-1">
+                        <div class="custom-file">
+                            <input name="image" type="file" class="" id="inputGroupFile01">
+                            <label class="form-label" for="typePasswordX-2">Image</label>
+                        </div>
+                    </div>
+                    <div class="form-outline mb-1">
+                        <input name="age" type="number" class="form-control form-control-lg" />
+                        <label class="form-label" for="typeEmailX-2">Age</label>
+                    </div>
+                    <div class="form-outline mb-1">
+                        <input name="description" type="text" class="form-control form-control-lg" />
+                        <label class="form-label" for="typeEmailX-2">Description</label>
+                    </div>
+                    <div class="form-outline mb-1">
+                        <select name = department class="form-select" multiple aria-label="multiple select example">
+                            {% for j in dep %}
+                            <option value={{j.id}}>{{j.DptName}}</option>
+                            {% endfor %}
+                          </select>
+
+                    </div>
+                    
+
+                    
+
+                    <center>
+
+                        <button class="btn btn-primary btn-lg btn-block" type="submit">Save</button>
+                    </center>
+
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<div>
+    <div style="padding-top: 30px;">
+
+        <center>
+
+            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                Add Department
+            </button>
+        </center>
+    </div>
+    
+    <div style="padding-top: 30px;">
+
+
+
+        <table class="table table-warning">
+            <thead>
+                <tr>
+                    <th scope="col">id</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Image</th>
+                    <th scope="col">Department name</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Edit</th>
+                    <th scope="col">Delete</th>
+                    <!-- <th scope="col">add head for department</th> -->
+                </tr>
+            </thead>
+            <tbody>
+                {% for i in user %}
+                <tr>
+                    <th scope="row">{{i.id}}</th>
+                    <td>{{i.name}}</td>
+                    <td>
+                        <div>
+                            <img style="height: 100px; width: 100px;" src="{{i.profile.url}}" alt="">
+
+                        </div>
+
+                    </td>
+                    <td>{{i.age}}</td>
+                    <td>{{i.description}}</td>
+                    <td><a href="{% url 'editHeaduser' i.id %}"><button type="button" class="btn btn-success">Edit</button></a></td>
+                    <td><a href="{% url 'deleteHeaduser' i.id %}"><button type="button" class="btn btn-danger">Delete</button></td></a>
+                    <!-- <td>
+                        <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal{{i.id}}">
+                            Add Department Head
+                        </button>
+                    </td> -->
+                </tr>
+                {% endfor %}
+
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+<!-- ###################  edit head user model  #################### -->
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form enctype="multipart/form-data" method="POST" name="admin_login">
+                    {% csrf_token %}
+
+                    <div class="form-outline mb-1">
+                        <input name="name" type="text" class="form-control form-control-lg" />
+                        <label class="form-label" for="typeEmailX-2">Name</label>
+                    </div>
+                    <div class="input-group form-outline mb-1">
+                        <div class="custom-file">
+                            <input name="image" type="file" class="" id="inputGroupFile01">
+                            <label class="form-label" for="typePasswordX-2">Image</label>
+                        </div>
+                    </div>
+                    <div class="form-outline mb-1">
+                        <input name="age" type="number" class="form-control form-control-lg" />
+                        <label class="form-label" for="typeEmailX-2">Age</label>
+                    </div>
+                    <div class="form-outline mb-1">
+                        <input name="description" type="text" class="form-control form-control-lg" />
+                        <label class="form-label" for="typeEmailX-2">Description</label>
+                    </div>
+                    <div class="form-outline mb-1">
+                        <select name = department class="form-select" multiple aria-label="multiple select example">
+                            {% for j in dep %}
+                            <option value={{j.id}}>{{j.DptName}}</option>
+                            {% endfor %}
+                          </select>
+
+                    </div>
+                    <center>
+                        <button class="btn btn-primary btn-lg btn-block" type="submit">Save</button>
+                    </center>
+
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+{% endblock content %}
